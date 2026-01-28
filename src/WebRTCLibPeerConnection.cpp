@@ -196,6 +196,13 @@ Error WebRTCLibPeerConnection::_initialize(const Dictionary &p_config) {
 			ERR_FAIL_COND_V(err != OK, FAILED);
 		}
 	}
+	if (p_config.has("portRangeBegin")) {
+		config.portRangeBegin = uint16_t(p_config["portRangeBegin"].operator int32_t());
+	}
+	if (p_config.has("portRangeEnd")) {
+		config.portRangeEnd = uint16_t(p_config["portRangeEnd"].operator int32_t());
+	}
+	ERR_FAIL_COND_V(config.portRangeBegin > config.portRangeEnd, ERR_INVALID_PARAMETER);
 	return _create_pc(config);
 }
 
