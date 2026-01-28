@@ -203,6 +203,9 @@ Error WebRTCLibPeerConnection::_initialize(const Dictionary &p_config) {
 		config.portRangeEnd = uint16_t(p_config["portRangeEnd"].operator int32_t());
 	}
 	ERR_FAIL_COND_V(config.portRangeBegin > config.portRangeEnd, ERR_INVALID_PARAMETER);
+	if (p_config.has("enableIceUdpMux")) {
+		config.enableIceUdpMux = p_config["enableIceUdpMux"].operator bool();
+	}
 	return _create_pc(config);
 }
 
