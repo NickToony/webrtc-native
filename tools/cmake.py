@@ -14,7 +14,10 @@ def cmake_default_flags(env):
     if env.get("cmake_default_flags", ""):
         return SCons.Util.CLVar(env["cmake_default_flags"])
 
-    config = {}
+    config = {
+        # Work around CMake 4.0+ removing compatibility with old cmake_minimum_required versions.
+        "CMAKE_POLICY_VERSION_MINIMUM": "3.5",
+    }
 
     if "CC" in env:
         config["CMAKE_C_COMPILER"] = env["CC"]
