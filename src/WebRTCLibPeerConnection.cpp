@@ -235,7 +235,6 @@ Ref<WebRTCDataChannel> WebRTCLibPeerConnection::_create_data_channel(const Strin
 
 Error WebRTCLibPeerConnection::_create_offer() try {
 	ERR_FAIL_COND_V(!peer_connection, ERR_UNCONFIGURED);
-	ERR_FAIL_COND_V(_get_connection_state() != STATE_NEW, FAILED);
 	peer_connection->setLocalDescription(rtc::Description::Type::Offer);
 	return OK;
 } catch (const std::exception &e) {
